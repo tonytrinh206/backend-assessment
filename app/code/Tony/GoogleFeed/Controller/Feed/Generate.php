@@ -1,30 +1,37 @@
 <?php
 namespace Tony\GoogleFeed\Controller\Feed;
-use Magento\Framework\Controller\ResultFactory;
+
+use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\App\Action\Context;
+use Tony\GoogleFeed\Model\GoogleFeed;
 
 class Generate extends \Magento\Framework\App\Action\Action
 {
-    protected $logger;
-    protected  $feed;
+
+    protected $feed;
+    protected $pageFactory;
 
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Psr\Log\LoggerInterface $logger,
-        \Tony\GoogleFeed\Model\GoogleFeed $feed
+        Context $context,
+        GoogleFeed $feed,
+        PageFactory $pageFactory
     )
     {
         $this->feed = $feed;
-        $this->logger = $logger;
+        $this->pageFactory = $pageFactory;
         parent::__construct($context);
     }
 
     /**
-     * Create new customer after placing order
+     * Generate Google Feed Manually
      *
      */
     public function execute()
     {
-        $this->feed->generateFeed();
+        header('Content-Type: application/xml; charset=utf-8');
+        $data = $this->feed->generateFeed(true);
+        echo $data;
+        exit;
     }
 
 }
