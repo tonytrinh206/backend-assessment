@@ -1,0 +1,12 @@
+<div class="country-code">
+    Country Code: <?php echo $block->getCountryCode()?>
+</div>
+<?php
+    if($block->getStaticBlock()){
+        echo $block->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId($block->getStaticBlock())
+            ->toHtml();
+    }
+
+    ?>

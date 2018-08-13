@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="product.info.extrahint">
+        <block class="Tony\GeoIP\Block\GeoIP"
+               name="product.view.extra"
+               template="Tony_GeoIP::product/view/geoip.phtml"
+               after="-">
+        </block>
+    </referenceContainer>
+</body>
